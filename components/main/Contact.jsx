@@ -12,7 +12,24 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!form.name.trim()) newErrors.name = "Name is required.";
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
+    ) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+    if (!form.message.trim()) newErrors.message = "Message is required.";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +37,30 @@ const Contact = () => {
       ...form,
       [name]: value,
     });
+
+    // Clear individual field error on user input
+    setErrors({
+      ...errors,
+      [name]: undefined,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      toast.error("⚠️ Please fix the errors in the form before submitting.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
     setLoading(true);
 
     emailjs
@@ -49,12 +86,6 @@ const Contact = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            style: {
-              background: "#1f1f38",
-              color: "#ffffff",
-              border: "1px solid #00FFFF",
-            },
-            icon: "🚀",
           });
           setForm({
             name: "",
@@ -64,7 +95,6 @@ const Contact = () => {
         },
         (error) => {
           setLoading(false);
-          console.error(error);
           toast.error("⚠️ Something went wrong. Please try again later.", {
             position: "top-right",
             autoClose: 5000,
@@ -73,12 +103,6 @@ const Contact = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            style: {
-              background: "#8B0000",
-              color: "#ffffff",
-              border: "1px solid #FF6347",
-            },
-            icon: "❌",
           });
         }
       );
@@ -86,6 +110,7 @@ const Contact = () => {
 
   return (
     <section className="relative py-20" id="contact">
+      {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black" />
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
@@ -101,33 +126,29 @@ const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Information */}
           <div className="space-y-8">
-            <div className="relative">
-              <div className="absolute inset-0 bg-purple-500 blur-[100px] opacity-20" />
-              <div className="relative space-y-6">
-                <h3 className="text-2xl font-bold text-white">Get in Touch</h3>
-                <p className="text-gray-300">
-                  Feel free to reach out for collaborations or just a friendly hello!
-                </p>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-gray-300">
-                    <Mail className="text-purple-400" size={20} />
-                    <span>sanduninavodya01@gmail.com</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-gray-300">
-                    <Phone className="text-purple-400" size={20} />
-                    <span>+94 71 936 98 98</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-gray-300">
-                    <MapPin className="text-purple-400" size={20} />
-                    <span>Ambalantota, Sri Lanka</span>
-                  </div>
-                </div>
+            <h3 className="text-2xl font-bold text-white">Get in Touch</h3>
+            <p className="text-gray-300">
+              Feel free to reach out for collaborations or just a friendly hello!
+            </p>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 text-gray-300">
+                <Mail className="text-purple-400" size={20} />
+                <span>sanduninavodya01@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-4 text-gray-300">
+                <Phone className="text-purple-400" size={20} />
+                <span>+94 71 936 98 98</span>
+              </div>
+              <div className="flex items-center gap-4 text-gray-300">
+                <MapPin className="text-purple-400" size={20} />
+                <span>Ambalantota, Sri Lanka</span>
               </div>
             </div>
           </div>
 
+          {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -142,6 +163,7 @@ const Contact = () => {
                 className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
                 required
               />
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
             </div>
 
             <div>
@@ -157,6 +179,7 @@ const Contact = () => {
                 className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
                 required
               />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
 
             <div>
@@ -172,6 +195,7 @@ const Contact = () => {
                 className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
                 required
               />
+              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
             </div>
 
             <button
@@ -185,7 +209,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Toast Notifications */}
       <ToastContainer />
     </section>
   );
