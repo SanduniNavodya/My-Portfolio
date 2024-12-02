@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -8,6 +7,13 @@ import { SparklesIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 const HeroContent = () => {
+  const scrollToFooter = () => {
+    const footerElement = document.getElementById("Footer"); // The `id` of the footer
+    if (footerElement) {
+      footerElement.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the footer
+    }
+  };
+
   return (
     <motion.div
       initial="hidden"
@@ -45,15 +51,14 @@ const HeroContent = () => {
           machine learning, and data-driven decision-making.
         </motion.p>
 
-        {/* Use a simple download link */}
-        <motion.a
+        {/* Learn More Button */}
+        <motion.button
           variants={slideInFromLeft(1)}
-          href="/Sanduni Navodya Resume.pdf" // Path to the PDF in the 'public' folder
-          download="Sanduni Navodya Resume.pdf" // This will trigger a download
-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          onClick={scrollToFooter} // Scrolls to the footer
+          className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
-          Download CV
-        </motion.a>
+          Learn More!
+        </motion.button>
       </div>
 
       <motion.div

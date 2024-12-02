@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Socials array with links and icon sources
 const Socials = [
   {
     name: "LinkedIn",
@@ -28,7 +27,10 @@ const Socials = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-gray-200 py-10">
+    <footer
+      id="Footer" // Add this id for smooth scrolling
+      className="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-gray-200 py-10"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Profile Section */}
@@ -122,9 +124,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li>
                 <Link href="mailto:sanduninavodya01@gmail.com">
-                  <p className="text-gray-300 hover:text-purple-500">
-                  Hire Me
-                  </p>
+                  <p className="text-gray-300 hover:text-purple-500">Hire Me</p>
                 </Link>
               </li>
               <li>
