@@ -10,7 +10,7 @@ export function StarField() {
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) return; // If ctx is null, the rest of the code won't execute
 
     // Set canvas size
     const setCanvasSize = () => {
@@ -35,28 +35,31 @@ export function StarField() {
     }
 
     // Animation loop
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "white";
+    // function animate() {
+    //   if (!ctx) return; // Double-check ctx is not null
 
-      stars.forEach((star) => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
+    //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //   ctx.fillStyle = "white";
 
-        // Move star
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
-      });
+    //   stars.forEach((star) => {
+    //     ctx.beginPath();
+    //     ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+    //     ctx.fill();
 
-      requestAnimationFrame(animate);
-    }
+    //     // Move star
+    //     star.y += star.speed;
+    //     if (star.y > canvas.height) {
+    //       star.y = 0;
+    //       star.x = Math.random() * canvas.width;
+    //     }
+    //   });
 
-    animate();
+    //   requestAnimationFrame(animate);
+    // }
 
+    // animate();
+
+    // Cleanup on unmount
     return () => {
       window.removeEventListener("resize", setCanvasSize);
     };
