@@ -7,11 +7,13 @@ import { SparklesIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 const HeroContent = () => {
-  const scrollToFooter = () => {
-    const footerElement = document.getElementById("Footer"); // The `id` of the footer
-    if (footerElement) {
-      footerElement.scrollIntoView({ behavior: "smooth" }); // Smooth scroll to the footer
-    }
+  const handleDownload = () => {
+    // Create an anchor element
+    const link = document.createElement('a');
+    link.download = 'Sanduni Navodya - Resume.pdf'; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -51,13 +53,13 @@ const HeroContent = () => {
           machine learning, and data-driven decision-making.
         </motion.p>
 
-        {/* Learn More Button */}
+        {/* Download Resume Button */}
         <motion.button
           variants={slideInFromLeft(1)}
-          onClick={scrollToFooter} // Scrolls to the footer
-          className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          onClick={handleDownload}
+          className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg max-w-[250px]"
         >
-          Learn More!
+          Download My Resume
         </motion.button>
       </div>
 
