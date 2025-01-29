@@ -58,7 +58,7 @@ const HeroContent = () => {
         <motion.button
           variants={slideInFromLeft(1)}
           onClick={handleDownload}
-          className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg max-w-[250px]"
         >
           Download My Resume
         </motion.button>
