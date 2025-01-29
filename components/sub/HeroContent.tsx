@@ -10,6 +10,7 @@ const HeroContent = () => {
   const handleDownload = () => {
     // Create an anchor element
     const link = document.createElement('a');
+    link.href = '/Sanduni Navodya - Resume.pdf'; 
     link.download = 'Sanduni Navodya - Resume.pdf'; 
     document.body.appendChild(link);
     link.click();
@@ -57,7 +58,7 @@ const HeroContent = () => {
         <motion.button
           variants={slideInFromLeft(1)}
           onClick={handleDownload}
-          className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg max-w-[250px]"
+          className="py-2 px-4 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
         >
           Download My Resume
         </motion.button>
