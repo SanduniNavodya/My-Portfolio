@@ -42,7 +42,7 @@ const Experience = () => {
             
             <div className="space-y-4">
               <h3 className="text-2xl font-semibold text-purple-400">
-                Data Science Intern
+                Intern Data Engineer
               </h3>
               
               <div className="flex items-center gap-2 text-gray-300">
