@@ -58,7 +58,7 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="section-pad mx-auto max-w-7xl h-[72px] flex items-center justify-between">
+      <div className="section-shell h-[72px] flex items-center justify-between">
         <div className="w-8 shrink-0" aria-hidden="true" />
 
         <nav className="hidden lg:flex items-center gap-1 rounded-full border border-ink/10 bg-white/45 p-1.5 backdrop-blur-md shadow-sm shadow-ink/5">

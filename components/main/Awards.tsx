@@ -9,22 +9,24 @@ const Awards = () => {
   return (
     <section
       id="awards"
-      className="relative overflow-hidden py-24 md:py-32"
+      className="relative overflow-hidden section-y"
     >
       <div className="pointer-events-none absolute inset-0 bg-section-fade opacity-70" />
 
-      <div className="relative mx-auto max-w-7xl section-pad">
+      <div className="relative section-shell">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-16 max-w-2xl md:mb-20"
+          className="section-head"
         >
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-            Recognition
-          </p>
-          <h2 className="section-title">Awards & Certifications</h2>
+          <div>
+            <p className="mb-1.5 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+              Recognition
+            </p>
+            <h2 className="section-title">Awards & Certifications</h2>
+          </div>
           <p className="section-lead">
             Academic honors, competition wins, and verified credentials.
           </p>
@@ -36,10 +38,10 @@ const Awards = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="mb-20 md:mb-28"
+          className="mb-8 md:mb-10"
         >
-          <div className="mb-8 flex items-end justify-between gap-4 border-b border-ink/10 pb-4">
-            <h3 className="font-display text-2xl font-medium text-ink sm:text-3xl">
+          <div className="mb-4 flex items-end justify-between gap-4 border-b border-ink/10 pb-3">
+            <h3 className="font-display text-xl font-medium text-ink sm:text-2xl">
               Awards
             </h3>
             <span className="text-sm text-ink-muted">
@@ -55,7 +57,7 @@ const Awards = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.06 }}
-                className="group grid grid-cols-[4.5rem_1fr] gap-4 border-b border-ink/8 py-6 sm:grid-cols-[6rem_1fr_auto] sm:gap-8 md:py-7"
+                className="group grid grid-cols-[4rem_1fr] gap-3 border-b border-ink/10 py-4 sm:grid-cols-[5.5rem_1fr_auto] sm:gap-6"
               >
                 <span className="font-display text-lg font-medium text-accent sm:text-xl">
                   {item.year}
@@ -81,8 +83,8 @@ const Awards = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: 0.08 }}
         >
-          <div className="mb-8 flex items-end justify-between gap-4 border-b border-ink/10 pb-4">
-            <h3 className="font-display text-2xl font-medium text-ink sm:text-3xl">
+          <div className="mb-4 flex items-end justify-between gap-4 border-b border-ink/10 pb-3">
+            <h3 className="font-display text-xl font-medium text-ink sm:text-2xl">
               Certifications
             </h3>
             <span className="text-sm text-ink-muted">
@@ -90,7 +92,7 @@ const Awards = () => {
             </span>
           </div>
 
-          <ul className="divide-y divide-ink/8 border-b border-ink/8">
+          <ul className="divide-y divide-ink/10 border-b border-ink/10">
             {certifications.map((item, i) => (
               <motion.li
                 key={`${item.title}-${item.issuer}`}
@@ -103,7 +105,7 @@ const Awards = () => {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group grid grid-cols-1 items-center gap-2 py-5 transition-colors sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto] sm:gap-6 md:py-5"
+                  className="group grid grid-cols-1 items-center gap-1.5 py-3.5 transition-colors sm:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_auto] sm:gap-6"
                 >
                   <span className="font-medium leading-snug text-ink transition-colors group-hover:text-accent">
                     {item.title}

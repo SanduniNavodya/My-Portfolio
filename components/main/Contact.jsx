@@ -72,12 +72,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 md:py-32 bg-charcoal text-white">
+    <section id="contact" className="relative overflow-hidden section-y bg-charcoal text-white">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(74,138,171,0.22),_transparent_50%)]" />
       <div className="absolute inset-0 opacity-30 hero-grid" />
 
-      <div className="relative mx-auto max-w-7xl section-pad">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="relative section-shell">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,10 +85,10 @@ const Contact = () => {
             transition={{ duration: 0.55 }}
             className="lg:col-span-5"
           >
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent-soft">
+            <p className="mb-1.5 text-sm font-medium uppercase tracking-[0.18em] text-accent-soft">
               Contact
             </p>
-            <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">
+            <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
               Let&apos;s build something intelligent
             </h2>
             <p className="mt-4 max-w-md leading-relaxed text-white/60">
@@ -136,7 +136,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1 }}
             onSubmit={handleSubmit}
-            className="space-y-5 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md sm:p-8 lg:col-span-7"
+            className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md sm:p-8 lg:col-span-7"
           >
             <div>
               <label htmlFor="name" className="mb-2 block text-sm text-white/50">

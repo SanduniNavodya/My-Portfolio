@@ -26,18 +26,8 @@ module.exports = {
         charcoal: "rgb(37 43 51 / <alpha-value>)",
       },
       fontFamily: {
-        display: [
-          "var(--font-display)",
-          "Source Serif 4",
-          "Georgia",
-          "serif",
-        ],
-        sans: [
-          "var(--font-sans)",
-          "Source Sans 3",
-          "Segoe UI",
-          "sans-serif",
-        ],
+        display: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "hero-wash":

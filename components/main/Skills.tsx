@@ -6,45 +6,45 @@ import { skillGroups } from "@/constants";
 
 const Skills = () => {
   return (
-    <section id="skills" className="relative overflow-hidden py-24 md:py-32">
-      <div className="mx-auto max-w-7xl section-pad">
+    <section id="skills" className="relative overflow-hidden section-y">
+      <div className="section-shell">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12 max-w-2xl"
+          className="section-head"
         >
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-            Toolkit
-          </p>
-          <h2 className="section-title">Skills</h2>
+          <div>
+            <p className="mb-1.5 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+              Toolkit
+            </p>
+            <h2 className="section-title">Skills</h2>
+          </div>
           <p className="section-lead">
             Technologies I use to design, automate, and ship data-driven systems.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {skillGroups.map((group, index) => (
             <motion.div
               key={group.title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="rounded-2xl border border-ink/10 bg-white/55 p-6 backdrop-blur-sm transition-all duration-300 hover:border-accent/25 hover:shadow-lg hover:shadow-accent/5"
+              transition={{ duration: 0.45, delay: index * 0.05 }}
+              className="rounded-xl border border-ink/10 bg-white/70 p-4 sm:p-5"
             >
-              <div className="mb-5 flex items-center justify-between border-b border-ink/10 pb-4">
-                <h3 className="font-display text-xl font-medium text-ink">
+              <div className="mb-3 flex items-center justify-between border-b border-ink/10 pb-2.5">
+                <h3 className="font-display text-lg font-medium text-ink">
                   {group.title}
                 </h3>
-                <span className="text-xs text-ink-muted">
-                  {group.skills.length} tools
-                </span>
+                <span className="text-xs text-ink-muted">{group.skills.length}</span>
               </div>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 {group.skills.map((skill) => (
-                  <span key={skill} className="skill-chip">
+                  <span key={skill} className="skill-chip !px-2.5 !py-1 !text-xs">
                     {skill}
                   </span>
                 ))}
