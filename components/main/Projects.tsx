@@ -7,7 +7,7 @@ import { projects, profile } from "@/constants";
 
 const Projects = () => {
   return (
-    <section id="projects" className="relative overflow-hidden section-y bg-white/40">
+    <section id="projects" className="relative overflow-hidden section-y bg-surface/40">
       <div className="section-shell">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -38,7 +38,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{ duration: 0.45, delay: index * 0.04 }}
-              className="group flex h-full flex-col rounded-xl border border-ink/10 bg-white/80 p-5 transition-all duration-300 hover:border-accent/35 hover:bg-white hover:shadow-lg hover:shadow-accent/5"
+              className="group flex h-full flex-col rounded-xl border border-ink/10 bg-surface/80 p-5 transition-all duration-300 hover:border-accent/35 hover:bg-surface hover:shadow-lg hover:shadow-accent/5"
             >
               <div className="mb-3 flex items-center justify-between gap-3">
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-accent">

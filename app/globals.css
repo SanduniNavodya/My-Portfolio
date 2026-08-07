@@ -3,13 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --ink: #1a2332;
-  --ink-soft: #3a4658;
-  --ink-muted: #6b7789;
-  --paper: #f4f6f9;
-  --accent: #2f6f8f;
-  --accent-soft: #4a8aab;
-  --charcoal: #252b33;
+  --ink: 26 35 50;
+  --ink-soft: 58 70 88;
+  --ink-muted: 107 119 137;
+  --paper: 244 246 249;
+  --paper-warm: 238 242 246;
+  --paper-deep: 226 232 240;
+  --surface: 255 255 255;
+  --accent: 47 111 143;
+  --accent-soft: 74 138 171;
+  --accent-faint: 214 232 240;
+  --charcoal: 37 43 51;
+  --hero-fade: 228 236 244;
+  --selection: 47 111 143;
+}
+
+.dark {
+  --ink: 232 237 244;
+  --ink-soft: 186 196 210;
+  --ink-muted: 132 144 160;
+  --paper: 14 17 23;
+  --paper-warm: 20 24 32;
+  --paper-deep: 28 34 44;
+  --surface: 28 34 44;
+  --accent: 90 168 204;
+  --accent-soft: 122 188 218;
+  --accent-faint: 36 58 74;
+  --charcoal: 8 11 16;
+  --hero-fade: 20 24 32;
+  --selection: 90 168 204;
 }
 
 html {
@@ -17,8 +39,8 @@ html {
 }
 
 body {
-  color: var(--ink);
-  background: var(--paper);
+  color: rgb(var(--ink));
+  background: rgb(var(--paper));
   font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
@@ -27,6 +49,7 @@ body {
   font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 h1,
@@ -41,8 +64,8 @@ h4,
 }
 
 ::selection {
-  background: rgba(47, 111, 143, 0.2);
-  color: var(--ink);
+  background: rgb(var(--selection) / 0.25);
+  color: rgb(var(--ink));
 }
 
 @layer components {
@@ -74,21 +97,30 @@ h4,
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-charcoal px-6 py-3.5 text-sm font-semibold tracking-wide text-white shadow-lg shadow-ink/10 transition-all duration-300 hover:bg-accent hover:-translate-y-0.5 hover:shadow-accent/25;
   }
 
+  .dark .btn-primary {
+    @apply bg-accent text-paper shadow-accent/20 hover:bg-accent-soft;
+  }
+
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white/55 px-6 py-3.5 text-sm font-semibold tracking-wide text-ink backdrop-blur-sm transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-surface/55 px-6 py-3.5 text-sm font-semibold tracking-wide text-ink backdrop-blur-sm transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-0.5;
   }
 
   .skill-chip {
-    @apply inline-flex items-center rounded-full border border-ink/10 bg-white/70 px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-sm shadow-ink/5 transition-all duration-200 hover:border-accent/40 hover:text-accent hover:-translate-y-0.5;
+    @apply inline-flex items-center rounded-full border border-ink/10 bg-surface/70 px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-sm shadow-ink/5 transition-all duration-200 hover:border-accent/40 hover:text-accent hover:-translate-y-0.5;
   }
 
   .glass-panel {
-    @apply rounded-2xl border border-white/70 bg-white/55 shadow-xl shadow-ink/5 backdrop-blur-xl;
+    @apply rounded-2xl border border-ink/10 bg-surface/55 shadow-xl shadow-ink/5 backdrop-blur-xl;
   }
 }
 
 .text-gradient-accent {
-  background: linear-gradient(120deg, #1a2332 10%, #2f6f8f 55%, #4a8aab 100%);
+  background: linear-gradient(
+    120deg,
+    rgb(var(--ink)) 10%,
+    rgb(var(--accent)) 55%,
+    rgb(var(--accent-soft)) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -96,17 +128,51 @@ h4,
 
 .hero-grid {
   background-image:
-    linear-gradient(rgba(26, 35, 50, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26, 35, 50, 0.035) 1px, transparent 1px);
+    linear-gradient(rgb(var(--ink) / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--ink) / 0.035) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, black 20%, transparent 75%);
 }
 
 .bg-hero-advanced {
   background:
-    radial-gradient(ellipse 70% 55% at 78% 28%, rgba(47, 111, 143, 0.16), transparent 58%),
-    radial-gradient(ellipse 45% 40% at 12% 78%, rgba(37, 43, 51, 0.06), transparent 50%),
-    linear-gradient(160deg, #f8fafc 0%, #eef3f8 42%, #e4ecf4 100%);
+    radial-gradient(ellipse 70% 55% at 78% 28%, rgb(var(--accent) / 0.16), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 12% 78%, rgb(var(--charcoal) / 0.08), transparent 50%),
+    linear-gradient(
+      160deg,
+      rgb(var(--paper)) 0%,
+      rgb(var(--paper-warm)) 42%,
+      rgb(var(--paper-deep)) 100%
+    );
+}
+
+.dark .bg-hero-advanced {
+  background:
+    radial-gradient(ellipse 70% 55% at 78% 28%, rgb(var(--accent) / 0.18), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 12% 78%, rgb(var(--accent) / 0.06), transparent 50%),
+    linear-gradient(
+      160deg,
+      rgb(var(--paper)) 0%,
+      rgb(var(--paper-warm)) 42%,
+      rgb(var(--paper-deep)) 100%
+    );
+}
+
+.bg-section-fade {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--paper)) 0%,
+    rgb(var(--paper-warm)) 100%
+  );
+}
+
+.hero-portrait-fade {
+  background: linear-gradient(
+    to top,
+    rgb(var(--hero-fade)) 0%,
+    rgb(var(--hero-fade) / 0.7) 45%,
+    transparent 100%
+  );
 }
 
 /* Marquee for skills */

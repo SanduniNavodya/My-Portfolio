@@ -34,7 +34,7 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: index * 0.05 }}
-              className="rounded-xl border border-ink/10 bg-white/70 p-4 sm:p-5"
+              className="rounded-xl border border-ink/10 bg-surface/70 p-4 sm:p-5"
             >
               <div className="mb-3 flex items-center justify-between border-b border-ink/10 pb-2.5">
                 <h3 className="font-display text-lg font-medium text-ink">

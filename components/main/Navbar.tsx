@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { navLinks, profile } from "@/constants";
+import ThemeToggle from "@/components/main/ThemeToggle";
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
@@ -61,7 +62,7 @@ const Navbar = () => {
       <div className="section-shell h-[72px] flex items-center justify-between">
         <div className="w-8 shrink-0" aria-hidden="true" />
 
-        <nav className="hidden lg:flex items-center gap-1 rounded-full border border-ink/10 bg-white/45 p-1.5 backdrop-blur-md shadow-sm shadow-ink/5">
+        <nav className="hidden lg:flex items-center gap-1 rounded-full border border-ink/10 bg-surface/45 p-1.5 backdrop-blur-md shadow-sm shadow-ink/5">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -76,7 +77,7 @@ const Navbar = () => {
               {active === link.href && (
                 <motion.span
                   layoutId="nav-pill"
-                  className="absolute inset-0 rounded-full bg-white shadow-sm shadow-ink/10"
+                  className="absolute inset-0 rounded-full bg-surface shadow-sm shadow-ink/10"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -103,15 +104,19 @@ const Navbar = () => {
           >
             GitHub
           </Link>
+          <ThemeToggle className="ml-1" />
         </div>
 
-        <button
-          className="lg:hidden p-2 text-ink rounded-full hover:bg-ink/5 transition-colors"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
+            className="p-2 text-ink rounded-full hover:bg-ink/5 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -128,7 +133,7 @@ const Navbar = () => {
                   key={link.name}
                   href={`#${link.href}`}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="rounded-xl px-3 py-3 text-base font-medium text-ink-soft hover:bg-white/70 hover:text-accent transition-colors"
+                  className="rounded-xl px-3 py-3 text-base font-medium text-ink-soft hover:bg-surface/70 hover:text-accent transition-colors"
                 >
                   {link.name}
                 </a>
