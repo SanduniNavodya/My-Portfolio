@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Source_Sans_3, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/main/Navbar";
 import Footer from "@/components/main/Footer";
 
+const display = Source_Serif_4({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "This is my portfolio",
+  title: "Sanduni Navodya | Python Developer",
+  description:
+    "Portfolio of Sanduni Navodya — Python Developer specializing in data engineering, intelligent automation, and machine learning.",
 };
 
 export default function RootLayout({
@@ -18,14 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} bg-[#030014] overflow-y-scroll overflow-x-hidden`}
-      >
-       
+    <html lang="en" className={`${display.variable} ${sans.variable}`}>
+      <body className="font-sans bg-paper text-ink overflow-x-hidden antialiased">
         <Navbar />
         {children}
-        
         <Footer />
       </body>
     </html>

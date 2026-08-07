@@ -5,6 +5,8 @@ import { Send, Mail, Phone, MapPin } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
+import { profile } from "@/constants";
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -12,7 +14,6 @@ const Contact = () => {
     email: "",
     message: "",
   });
-
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -21,9 +22,7 @@ const Contact = () => {
     if (!form.name.trim()) newErrors.name = "Name is required.";
     if (!form.email.trim()) {
       newErrors.email = "Email is required.";
-    } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
-    ) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
       newErrors.email = "Please enter a valid email address.";
     }
     if (!form.message.trim()) newErrors.message = "Message is required.";
@@ -33,31 +32,15 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-
-    // Clear individual field error on user input
-    setErrors({
-      ...errors,
-      [name]: undefined,
-    });
+    setForm({ ...form, [name]: value });
+    setErrors({ ...errors, [name]: undefined });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
-      toast.error("⚠️ Please fix the errors in the form before submitting.", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error("Please fix the errors before submitting.");
       return;
     }
 
@@ -78,80 +61,85 @@ const Contact = () => {
       .then(
         () => {
           setLoading(false);
-          toast.success("🎉 Thank you! Your message has been sent.", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
+          toast.success("Thank you! Your message has been sent.");
+          setForm({ name: "", email: "", message: "" });
         },
-        (error) => {
+        () => {
           setLoading(false);
-          toast.error("⚠️ Something went wrong. Please try again later.", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          toast.error("Something went wrong. Please try again later.");
         }
       );
   };
 
   return (
-    <section className="relative py-20" id="contact">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black" />
-        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
-      </div>
+    <section id="contact" className="relative overflow-hidden py-24 md:py-32 bg-charcoal text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(74,138,171,0.22),_transparent_50%)]" />
+      <div className="absolute inset-0 opacity-30 hero-grid" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Contact Me</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
-            Let's create something amazing together. Get in touch and let's discuss your ideas.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-white">Get in Touch</h3>
-            <p className="text-gray-300">
-              Feel free to reach out for collaborations or just a friendly hello!
+      <div className="relative mx-auto max-w-7xl section-pad">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="lg:col-span-5"
+          >
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent-soft">
+              Contact
             </p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 text-gray-300">
-                <Mail className="text-purple-400" size={20} />
-                <span>sanduninavodya01@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-4 text-gray-300">
-                <Phone className="text-purple-400" size={20} />
-                <span>+94 71 936 98 98</span>
-              </div>
-              <div className="flex items-center gap-4 text-gray-300">
-                <MapPin className="text-purple-400" size={20} />
-                <span>Ambalantota, Sri Lanka</span>
-              </div>
-            </div>
-          </div>
+            <h2 className="font-display text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">
+              Let&apos;s build something intelligent
+            </h2>
+            <p className="mt-4 max-w-md leading-relaxed text-white/60">
+              Open to collaborations, roles, and conversations about data engineering,
+              Python development, and intelligent systems.
+            </p>
 
-          {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="mt-10 space-y-3">
+              {[
+                {
+                  icon: Mail,
+                  label: profile.email,
+                  href: `mailto:${profile.email}`,
+                },
+                {
+                  icon: Phone,
+                  label: profile.phone,
+                  href: `tel:${profile.phone.replace(/\s/g, "")}`,
+                },
+                {
+                  icon: MapPin,
+                  label: profile.location,
+                  href: null,
+                },
+              ].map((item) => {
+                const Icon = item.icon;
+                const Comp = item.href ? "a" : "div";
+                return (
+                  <Comp
+                    key={item.label}
+                    href={item.href || undefined}
+                    className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-white/80 transition-colors hover:border-accent-soft/40 hover:bg-white/10 hover:text-white"
+                  >
+                    <Icon size={18} className="shrink-0 text-accent-soft" />
+                    <span className="text-sm">{item.label}</span>
+                  </Comp>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          <motion.form
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            onSubmit={handleSubmit}
+            className="space-y-5 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md sm:p-8 lg:col-span-7"
+          >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="name" className="mb-2 block text-sm text-white/50">
                 Name
               </label>
               <input
@@ -160,14 +148,16 @@ const Contact = () => {
                 name="name"
                 value={form.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-white placeholder:text-white/30 transition-colors focus:border-accent-soft focus:outline-none"
                 required
               />
-              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-300">{errors.name}</p>
+              )}
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="email" className="mb-2 block text-sm text-white/50">
                 Email
               </label>
               <input
@@ -176,14 +166,16 @@ const Contact = () => {
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-white placeholder:text-white/30 transition-colors focus:border-accent-soft focus:outline-none"
                 required
               />
-              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-300">{errors.email}</p>
+              )}
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+              <label htmlFor="message" className="mb-2 block text-sm text-white/50">
                 Message
               </label>
               <textarea
@@ -192,24 +184,27 @@ const Contact = () => {
                 value={form.message}
                 onChange={handleChange}
                 rows={5}
-                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"
+                className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-white placeholder:text-white/30 transition-colors focus:border-accent-soft focus:outline-none"
                 required
               />
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
+              {errors.message && (
+                <p className="mt-1 text-sm text-red-300">{errors.message}</p>
+              )}
             </div>
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+              disabled={loading}
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-charcoal transition-all hover:-translate-y-0.5 hover:bg-accent-faint disabled:opacity-60"
             >
-              <Send size={20} />
+              <Send size={16} />
               {loading ? "Sending..." : "Send Message"}
             </button>
-          </form>
+          </motion.form>
         </div>
       </div>
 
-      <ToastContainer />
+      <ToastContainer theme="dark" position="top-right" autoClose={4000} />
     </section>
   );
 };

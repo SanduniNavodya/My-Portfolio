@@ -1,71 +1,108 @@
-@import url("https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-.cursive {
-  font-family: "Cedarville Cursive", cursive;
+:root {
+  --ink: #1a2332;
+  --ink-soft: #3a4658;
+  --ink-muted: #6b7789;
+  --paper: #f4f6f9;
+  --accent: #2f6f8f;
+  --accent-soft: #4a8aab;
+  --charcoal: #252b33;
 }
-.Welcome-text {
-  background: linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, 0.4)
-    ),
-    linear-gradient(90.01deg, #e59cff 0.01%, #ba9cff 50.01%, #9cb2ff 100%);
-  background-blend-mode: normal, screen;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.Welcome-box {
-  isolation: isolate;
-  overflow: hidden;
-  align-items: center;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  border-radius: 32px;
-  box-shadow: inset 0 -7px 11px #a48fff1f;
-  display: flex;
-
-  position: relative;
-  width: -moz-max-content;
-  width: max-content;
-  transition: 0.45s cubic-bezier(0.6, 0.6, 0, 1) box-shadow;
-}
-
-.button-primary {
-  background: linear-gradient(
-      180deg,
-      rgba(60, 8, 126, 0) 0%,
-      rgba(60, 8, 126, 0.32) 100%
-    ),
-    rgba(113, 47, 255, 0.12);
-  box-shadow: inset 0 0 12px #bf97ff3d;
-}
-.button-primary:hover {
-  background: linear-gradient(
-      180deg,
-      rgba(60, 8, 126, 0) 0%,
-      rgba(60, 8, 126, 0.42) 100%
-    ),
-    rgba(113, 47, 255, 0.24);
-  box-shadow: inset 0 0 12px #bf97ff70;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.scrollbar-hidden {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-}
-
-
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-sans), "Source Sans 3", "Segoe UI", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-display), "Source Serif 4", Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: rgba(47, 111, 143, 0.2);
+  color: var(--ink);
+}
+
+@layer components {
+  .section-pad {
+    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
+  }
+
+  .section-title {
+    @apply font-display text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-ink;
+  }
+
+  .section-lead {
+    @apply mt-3 max-w-2xl text-base sm:text-[1.125rem] text-ink-muted leading-relaxed;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-charcoal px-6 py-3.5 text-sm font-semibold tracking-wide text-white shadow-lg shadow-ink/10 transition-all duration-300 hover:bg-accent hover:-translate-y-0.5 hover:shadow-accent/25;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 bg-white/55 px-6 py-3.5 text-sm font-semibold tracking-wide text-ink backdrop-blur-sm transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-0.5;
+  }
+
+  .skill-chip {
+    @apply inline-flex items-center rounded-full border border-ink/10 bg-white/70 px-3.5 py-1.5 text-sm font-medium text-ink-soft shadow-sm shadow-ink/5 transition-all duration-200 hover:border-accent/40 hover:text-accent hover:-translate-y-0.5;
+  }
+
+  .glass-panel {
+    @apply rounded-2xl border border-white/70 bg-white/55 shadow-xl shadow-ink/5 backdrop-blur-xl;
+  }
+}
+
+.text-gradient-accent {
+  background: linear-gradient(120deg, #1a2332 10%, #2f6f8f 55%, #4a8aab 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(26, 35, 50, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 35, 50, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, black 20%, transparent 75%);
+}
+
+.bg-hero-advanced {
+  background:
+    radial-gradient(ellipse 70% 55% at 78% 28%, rgba(47, 111, 143, 0.16), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 12% 78%, rgba(37, 43, 51, 0.06), transparent 50%),
+    linear-gradient(160deg, #f8fafc 0%, #eef3f8 42%, #e4ecf4 100%);
+}
+
+/* Marquee for skills */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
