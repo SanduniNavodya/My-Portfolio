@@ -1,170 +1,143 @@
 "use client";
 
-import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-
-const Socials = [
-  {
-    name: "LinkedIn",
-    src: "/linkedin.png",
-    url: "https://www.linkedin.com/in/sanduni-navodya-b3a370282",
-  },
-  {
-    name: "GitHub",
-    src: "/gitwhite.png",
-    url: "https://github.com/SanduniNavodya",
-  },
-  {
-    name: "Facebook",
-    src: "/facebook.png",
-    url: "https://www.facebook.com/profile.php?id=100078203752777",
-  },
-  {
-    name: "Instagram",
-    src: "/instagram.png",
-    url: "https://www.instagram.com/sanduninavodya01/profilecard/?igsh=MWM2czFscmUwaHdjZg==",
-  },
-];
+import { motion, AnimatePresence } from "framer-motion";
+import { navLinks, profile } from "@/constants";
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
   if (element) {
-    const offsetTop = element.offsetTop;
     window.scrollTo({
-      top: offsetTop - 65, // Subtract navbar height
+      top: element.offsetTop - 72,
       behavior: "smooth",
     });
   }
 };
 
-const NavLinks = [
-  { name: "About me", href: "about-me" },
-  { name: "Skills", href: "skills" },
-  { name: "Projects", href: "projects" },
-  { name: "Experience", href: "experience" },
-  { name: "Contact", href: "contact" },
-];
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("");
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      const sections = navLinks.map((l) => l.href);
+      let current = "";
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 120) {
+          current = id;
+        }
+      }
+      setActive(current);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     scrollToSection(href);
     setIsMenuOpen(false);
   };
 
   return (
-    <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50">
-      <div className="w-full h-full flex flex-row items-center justify-between px-4 md:px-10">
-        {/* Logo and Home Link */}
-        <a 
-          href="#about-me" 
-          onClick={(e) => handleNavClick(e, 'about-me')}
-          className="h-auto w-auto flex flex-row items-center"
-        >
-          <Image
-            src="/NavLogo.png"
-            alt="logo"
-            width={70}
-            height={70}
-            className="cursor-pointer hover:animate-slowspin"
-          />
-        </a>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-paper/75 backdrop-blur-xl border-b border-ink/5 shadow-[0_8px_30px_rgba(26,35,50,0.04)]"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="section-pad mx-auto max-w-7xl h-[72px] flex items-center justify-between">
+        <div className="w-8 shrink-0" aria-hidden="true" />
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex w-auto h-full items-center justify-between md:mr-20">
-          <div className="flex items-center justify-between h-auto border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-200 space-x-8">
-            {NavLinks.map((link) => (
-              <a
-                key={link.name}
-                href={`#${link.href}`}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="cursor-pointer hover:text-white"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop Social Media Icons */}
-        <div className="hidden md:flex flex-row gap-5">
-          {Socials.map((social) => (
-            <Link
-              key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
+        <nav className="hidden lg:flex items-center gap-1 rounded-full border border-ink/10 bg-white/45 p-1.5 backdrop-blur-md shadow-sm shadow-ink/5">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={`#${link.href}`}
+              onClick={(e) => handleNavClick(e, link.href)}
+              className={`relative rounded-full px-4 py-2 text-sm font-semibold tracking-wide transition-colors ${
+                active === link.href
+                  ? "text-ink"
+                  : "text-ink-muted hover:text-ink"
+              }`}
             >
-              <Image
-                src={social.src}
-                alt={social.name}
-                width={24}
-                height={24}
-                className="cursor-pointer hover:scale-110 transition-transform"
-              />
-            </Link>
+              {active === link.href && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 rounded-full bg-white shadow-sm shadow-ink/10"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10">{link.name}</span>
+            </a>
           ))}
+        </nav>
+
+        <div className="hidden lg:flex items-center gap-3">
+          <Link
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-ink-muted hover:text-accent transition-colors"
+          >
+            LinkedIn
+          </Link>
+          <span className="text-ink/20">·</span>
+          <Link
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-ink-muted hover:text-accent transition-colors"
+          >
+            GitHub
+          </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-200 p-2"
-          onClick={toggleMenu}
+          className="lg:hidden p-2 text-ink rounded-full hover:bg-ink/5 transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="absolute top-[65px] left-0 w-full bg-[#030014] border-t border-[#7042f861] md:hidden">
-            <div className="flex flex-col p-4">
-              {/* Mobile Navigation Links */}
-              <div className="flex flex-col space-y-4 mb-4">
-                {NavLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={`#${link.href}`}
-                    className="text-gray-200 hover:text-white"
-                    onClick={(e) => handleNavClick(e, link.href)}
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </div>
-              
-              {/* Mobile Social Media Icons */}
-              <div className="flex flex-row gap-4 pt-4 border-t border-[#7042f861]">
-                {Socials.map((social) => (
-                  <Link
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Image
-                      src={social.src}
-                      alt={social.name}
-                      width={24}
-                      height={24}
-                      className="cursor-pointer hover:scale-110 transition-transform"
-                    />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
-    </div>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden overflow-hidden border-t border-ink/5 bg-paper/95 backdrop-blur-xl"
+          >
+            <div className="section-pad py-6 flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={`#${link.href}`}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="rounded-xl px-3 py-3 text-base font-medium text-ink-soft hover:bg-white/70 hover:text-accent transition-colors"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 

@@ -1,69 +1,99 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Building } from "lucide-react";
+import { MapPin, ExternalLink } from "lucide-react";
+import { experiences } from "@/constants";
 
 const Experience = () => {
   return (
-    <div id="experience" className="relative overflow-hidden py-20">
-      {/* Background Elements */}
-      <div className="absolute w-full h-full z-0">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-500/20 to-cyan-500/20 rounded-full blur-3xl" />
-      </div>
-
-      {/* Content Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Title */}
+    <section id="experience" className="relative overflow-hidden py-24 md:py-32 bg-white/35">
+      <div className="mx-auto max-w-7xl section-pad">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="mb-14 md:mb-16 max-w-2xl"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">Experience</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 mx-auto" />
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+            Career
+          </p>
+          <h2 className="section-title">Experience</h2>
+          <p className="section-lead">
+            Roles spanning healthcare automation, data engineering, and AI-driven solutions.
+          </p>
         </motion.div>
 
-        {/* Experience Ladder */}
-        <div className="relative">
-          {/* Vertical Line */}
-          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-cyan-500" />
+        <div className="relative space-y-5">
+          {experiences.map((exp, index) => (
+            <motion.article
+              key={`${exp.company}-${exp.role}`}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
+              className="group relative overflow-hidden rounded-2xl border border-ink/10 bg-gradient-to-br from-white/80 to-white/40 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5"
+            >
+              <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-accent to-accent-soft opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          {/* Experience Item */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative ml-12 p-6"
-          >
-            {/* Timeline Dot */}
-            <div className="absolute left-[-2.5rem] top-6 w-4 h-4 rounded-full bg-purple-500 border-4 border-[#030014]" />
-            
-            <div className="space-y-4">
-              <h3 className="text-2xl font-semibold text-purple-400">
-                Data Science Intern
-              </h3>
-              
-              <div className="flex items-center gap-2 text-gray-300">
-                <Building size={20} className="text-cyan-400" />
-                <span>SLT Digital Lab - Sri Lanka Telecom PLC</span>
-              </div>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8">
+                <div className="md:col-span-4 space-y-4">
+                  <div className="relative flex h-12 w-full max-w-[220px] items-center rounded-lg bg-white px-2 py-1">
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.company} logo`}
+                      width={220}
+                      height={48}
+                      unoptimized
+                      className="h-10 w-auto max-w-full object-contain object-left"
+                    />
+                  </div>
 
-              <div className="flex items-center gap-2 text-gray-300">
-                <Calendar size={18} className="text-cyan-400" />
-                <span>Dec 2024 - Present</span>
-              </div>
+                  <p className="inline-flex rounded-full bg-accent-faint px-3 py-1 text-xs font-medium text-accent">
+                    {exp.period}
+                  </p>
 
-              <div className="flex items-center gap-2 text-gray-300">
-                <MapPin size={18} className="text-cyan-400" />
-                <span>Sri Lanka Telecom Head Office, Lotus Road, Colombo-01</span>
+                  <div className="space-y-1.5 text-sm text-ink-muted">
+                    <p className="flex items-start gap-2">
+                      <MapPin size={15} className="mt-0.5 shrink-0 text-accent" />
+                      <span>{exp.address}</span>
+                    </p>
+                    {"addressNote" in exp && exp.addressNote && (
+                      <p className="pl-[23px] text-xs text-ink-muted/80">
+                        {exp.addressNote}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="md:col-span-8">
+                  <h3 className="font-display text-2xl font-medium text-ink sm:text-3xl">
+                    {exp.role}
+                  </h3>
+                  <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <p className="text-base font-medium text-accent">{exp.company}</p>
+                    <a
+                      href={exp.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-ink-muted transition-colors hover:text-accent"
+                    >
+                      Visit website
+                      <ExternalLink size={13} />
+                    </a>
+                  </div>
+                  <p className="mt-4 max-w-2xl leading-relaxed text-ink-muted">
+                    {exp.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.article>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

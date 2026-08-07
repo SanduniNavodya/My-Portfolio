@@ -10,6 +10,7 @@ const HeroContent = () => {
   const handleDownload = () => {
     // Create an anchor element
     const link = document.createElement('a');
+    link.href = '/Sanduni Navodya - Resume.pdf'; 
     link.download = 'Sanduni Navodya - Resume.pdf'; 
     document.body.appendChild(link);
     link.click();
