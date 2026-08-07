@@ -6,22 +6,24 @@ import { publications } from "@/constants";
 
 const Publications = () => {
   return (
-    <section id="publications" className="relative overflow-hidden py-24 md:py-32">
-      <div className="mx-auto max-w-7xl section-pad">
+    <section id="publications" className="relative overflow-hidden section-y">
+      <div className="section-shell">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-10 max-w-2xl"
+          className="section-head"
         >
-          <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-accent">
-            Research
-          </p>
-          <h2 className="section-title">Publications</h2>
+          <div>
+            <p className="mb-1.5 text-sm font-medium uppercase tracking-[0.18em] text-accent">
+              Research
+            </p>
+            <h2 className="section-title">Publications</h2>
+          </div>
         </motion.div>
 
-        <div className="max-w-3xl space-y-5">
+        <div className="space-y-4">
           {publications.map((pub) => (
             <motion.article
               key={pub.title}

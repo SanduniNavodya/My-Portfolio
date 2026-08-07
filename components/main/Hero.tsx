@@ -79,11 +79,11 @@ const Hero = () => {
 
       <motion.div
         style={{ opacity: fade }}
-        className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end section-pad pb-10 pt-28 lg:justify-center lg:pb-16 lg:pt-24"
+        className="relative z-10 section-shell flex min-h-[100svh] flex-col justify-end pb-8 pt-24 lg:justify-center lg:pb-12 lg:pt-20"
       >
         <div className="grid w-full grid-cols-1 items-end gap-6 lg:grid-cols-12 lg:items-center lg:gap-4">
           {/* Copy */}
-          <motion.div style={{ y: textY }} className="relative z-20 lg:col-span-6 xl:col-span-5">
+          <motion.div style={{ y: textY }} className="relative z-20 lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.12 }}
-              className="font-display text-[clamp(2.75rem,7vw,5.5rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-ink"
+              className="font-display text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[1.02] tracking-[-0.03em] text-ink"
             >
               <span className="block">{profile.name.split(" ")[0]}</span>
               <span className="block text-gradient-accent">
@@ -124,7 +124,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.28 }}
-              className="mt-6 max-w-md text-base leading-relaxed text-ink-soft sm:text-lg"
+              className="mt-6 max-w-md text-base font-normal leading-relaxed text-ink-muted sm:text-lg"
             >
               {profile.tagline}
             </motion.p>
@@ -175,7 +175,7 @@ const Hero = () => {
           {/* Portrait stage */}
           <motion.div
             style={{ y: portraitY }}
-            className="relative z-10 lg:col-span-6 xl:col-span-7"
+            className="relative z-10 lg:col-span-7"
           >
             <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] sm:max-w-[480px] lg:ml-auto lg:mr-0 lg:max-w-none lg:aspect-[5/6] xl:max-w-[560px]">
               {/* Soft pedestal glow */}

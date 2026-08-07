@@ -19,10 +19,12 @@ html {
 body {
   color: var(--ink);
   background: var(--paper);
-  font-family: var(--font-sans), "Source Sans 3", "Segoe UI", sans-serif;
+  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
   font-size: 1.0625rem;
-  line-height: 1.65;
-  letter-spacing: 0.01em;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  font-weight: 400;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,8 +34,10 @@ h2,
 h3,
 h4,
 .font-display {
-  font-family: var(--font-display), "Source Serif 4", Georgia, serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-optical-sizing: auto;
 }
 
 ::selection {
@@ -43,15 +47,27 @@ h4,
 
 @layer components {
   .section-pad {
-    @apply px-5 sm:px-8 lg:px-12 xl:px-16;
+    @apply px-4 sm:px-6 lg:px-10 xl:px-12;
+  }
+
+  .section-y {
+    @apply py-8 md:py-10;
+  }
+
+  .section-head {
+    @apply mb-6 flex flex-col gap-2 md:mb-7 lg:flex-row lg:items-end lg:justify-between lg:gap-8;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl section-pad;
   }
 
   .section-title {
-    @apply font-display text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-ink;
+    @apply font-display text-3xl sm:text-4xl font-bold tracking-tight text-ink;
   }
 
   .section-lead {
-    @apply mt-3 max-w-2xl text-base sm:text-[1.125rem] text-ink-muted leading-relaxed;
+    @apply text-sm sm:text-base font-normal text-ink-muted leading-relaxed lg:shrink-0 lg:whitespace-nowrap lg:text-right;
   }
 
   .btn-primary {
