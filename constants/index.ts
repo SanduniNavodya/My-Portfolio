@@ -117,7 +117,24 @@ export const skillGroups = [
 
 export const projects = [
   {
+    title: "Hospital Data Warehousing & Business Intelligence",
+    category: "Data Engineering",
+    description:
+      "Designed and implemented a hospital data warehouse using SQL Server and a Snowflake schema. Built ETL workflows with SSIS to extract, transform, cleanse, and load healthcare data into fact and dimension tables for business intelligence reporting.",
+    technologies: [
+      "Microsoft SQL Server",
+      "SSIS",
+      "T-SQL",
+      "ETL",
+      "Data Warehousing",
+      "Snowflake Schema",
+      "Business Intelligence",
+    ],
+    githubLink: "https://github.com/SanduniNavodya/DWBI-Assignment",
+  },
+  {
     title: "EduPulse – Knowledge Sharing Platform",
+    category: "Full-stack",
     description:
       "Collaborative learning platform enabling students to share knowledge, follow structured learning plans, and engage socially. Features real-time notifications, milestone tracking, and secure OAuth 2.0 authentication.",
     technologies: [
@@ -131,6 +148,7 @@ export const projects = [
   },
   {
     title: "CryGuard – Baby Cry Detection System",
+    category: "IoT · ML",
     description:
       "Real-time baby monitoring system using IoT and machine learning to detect cry conditions and monitor nursery data including temperature, humidity, motion, and light. Live alerts and dashboard updates via ESP32, FastAPI, and WebSocket.",
     technologies: [
@@ -146,6 +164,7 @@ export const projects = [
   },
   {
     title: "House Price Prediction System",
+    category: "Machine Learning",
     description:
       "Web application that predicts house prices using regression models. Users input property features such as size, structure, and sale details to receive estimated sale prices.",
     technologies: ["React", "Flask", "Vite", "Machine Learning"],
@@ -154,6 +173,7 @@ export const projects = [
   },
   {
     title: "Mobile Phone Recommendation System",
+    category: "Machine Learning",
     description:
       "Recommendation system using content-based and keyword-based filtering. Delivers personalized suggestions based on brand, storage, RAM, and price preferences.",
     technologies: ["Python", "Streamlit", "Machine Learning"],
@@ -162,6 +182,7 @@ export const projects = [
   },
   {
     title: "Text Summarization & Analysis System",
+    category: "NLP",
     description:
       "NLP models that generate concise summaries of lengthy texts, improving information extraction efficiency and readability through a Streamlit interface.",
     technologies: ["Python", "NLP", "Streamlit", "Machine Learning"],
@@ -170,6 +191,7 @@ export const projects = [
   },
   {
     title: "GenAI Cold Email Generator",
+    category: "Generative AI",
     description:
       "Tool that scrapes job listings from company career pages and generates personalized cold emails using portfolio links stored in a vector database.",
     technologies: ["Python", "Groq", "LangChain", "Streamlit"],
@@ -178,6 +200,7 @@ export const projects = [
   },
   {
     title: "Vehicle Service Management System",
+    category: "Full-stack",
     description:
       "Full-stack web system for managing vehicle service operations including employee management, inventory, appointments, payments, and finance.",
     technologies: ["MERN Stack", "JavaScript", "Tailwind CSS"],
