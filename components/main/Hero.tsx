@@ -88,7 +88,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/50 px-3.5 py-1.5 backdrop-blur-md"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-surface/50 px-3.5 py-1.5 backdrop-blur-md"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
@@ -197,7 +197,7 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.25 }}
-                className="absolute left-[14%] top-[14%] h-[66%] w-[66%] rounded-full bg-gradient-to-br from-white/80 via-accent-faint/60 to-paper-deep/80 shadow-[inset_0_0_60px_rgba(47,111,143,0.08)]"
+                className="absolute left-[14%] top-[14%] h-[66%] w-[66%] rounded-full bg-gradient-to-br from-surface/80 via-accent-faint/60 to-paper-deep/80 shadow-[inset_0_0_60px_rgb(var(--accent)/0.08)]"
               />
 
               {/* Accent arc */}
@@ -239,7 +239,7 @@ const Hero = () => {
                     className="object-contain object-bottom drop-shadow-[0_30px_50px_rgba(26,35,50,0.22)]"
                   />
                   {/* Soft bottom blend into page */}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#E4ECF4] via-[#E4ECF4]/70 to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 hero-portrait-fade" />
                 </div>
               </motion.div>
 

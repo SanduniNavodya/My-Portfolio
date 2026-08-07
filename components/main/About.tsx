@@ -46,14 +46,14 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: 0.1 + i * 0.08 }}
-                  className="rounded-xl border border-ink/10 bg-white/70 p-4 sm:p-5"
+                  className="rounded-xl border border-ink/10 bg-surface/70 p-4 sm:p-5"
                 >
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <a
                       href={item.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white ring-1 ring-ink/5"
+                      className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface ring-1 ring-ink/5"
                       aria-label={`${item.school} website`}
                     >
                       <Image

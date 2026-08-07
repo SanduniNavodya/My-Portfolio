@@ -31,7 +31,7 @@ const Publications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55 }}
-              className="rounded-2xl border border-ink/10 bg-gradient-to-br from-accent/5 to-white/60 p-6 sm:p-8"
+              className="rounded-2xl border border-ink/10 bg-gradient-to-br from-accent/5 to-surface/60 p-6 sm:p-8"
             >
               <div className="mb-4 inline-flex rounded-full bg-accent-faint px-3 py-1 text-xs font-medium text-accent">
                 IEEE EIT 2026 · In press

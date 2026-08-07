@@ -8,7 +8,7 @@ import { experiences } from "@/constants";
 
 const Experience = () => {
   return (
-    <section id="experience" className="relative overflow-hidden section-y bg-white/35">
+    <section id="experience" className="relative overflow-hidden section-y bg-surface/35">
       <div className="section-shell">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

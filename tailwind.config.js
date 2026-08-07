@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,21 +10,22 @@ module.exports = {
     extend: {
       colors: {
         ink: {
-          DEFAULT: "rgb(26 35 50 / <alpha-value>)",
-          soft: "rgb(58 70 88 / <alpha-value>)",
-          muted: "rgb(107 119 137 / <alpha-value>)",
+          DEFAULT: "rgb(var(--ink) / <alpha-value>)",
+          soft: "rgb(var(--ink-soft) / <alpha-value>)",
+          muted: "rgb(var(--ink-muted) / <alpha-value>)",
         },
         paper: {
-          DEFAULT: "rgb(244 246 249 / <alpha-value>)",
-          warm: "rgb(238 242 246 / <alpha-value>)",
-          deep: "rgb(226 232 240 / <alpha-value>)",
+          DEFAULT: "rgb(var(--paper) / <alpha-value>)",
+          warm: "rgb(var(--paper-warm) / <alpha-value>)",
+          deep: "rgb(var(--paper-deep) / <alpha-value>)",
         },
+        surface: "rgb(var(--surface) / <alpha-value>)",
         accent: {
-          DEFAULT: "rgb(47 111 143 / <alpha-value>)",
-          soft: "rgb(74 138 171 / <alpha-value>)",
-          faint: "rgb(214 232 240 / <alpha-value>)",
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          soft: "rgb(var(--accent-soft) / <alpha-value>)",
+          faint: "rgb(var(--accent-faint) / <alpha-value>)",
         },
-        charcoal: "rgb(37 43 51 / <alpha-value>)",
+        charcoal: "rgb(var(--charcoal) / <alpha-value>)",
       },
       fontFamily: {
         display: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
@@ -31,9 +33,9 @@ module.exports = {
       },
       backgroundImage: {
         "hero-wash":
-          "radial-gradient(ellipse 80% 60% at 70% 20%, rgba(47,111,143,0.12), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 80%, rgba(37,43,51,0.06), transparent 50%), linear-gradient(165deg, #F7F9FC 0%, #E8EEF4 45%, #DDE6EF 100%)",
+          "radial-gradient(ellipse 80% 60% at 70% 20%, rgb(var(--accent) / 0.12), transparent 55%), radial-gradient(ellipse 50% 40% at 10% 80%, rgb(var(--charcoal) / 0.06), transparent 50%), linear-gradient(165deg, rgb(var(--paper)) 0%, rgb(var(--paper-warm)) 45%, rgb(var(--paper-deep)) 100%)",
         "section-fade":
-          "linear-gradient(180deg, #F4F6F9 0%, #EBF0F5 100%)",
+          "linear-gradient(180deg, rgb(var(--paper)) 0%, rgb(var(--paper-warm)) 100%)",
       },
       keyframes: {
         "fade-up": {
