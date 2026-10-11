@@ -33,6 +33,18 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^5.7.2"
   },
+  "optionalDependencies": {
+    "@img/sharp-libvips-linux-x64": "1.3.4",
+    "@img/sharp-libvips-linuxmusl-x64": "1.3.4",
+    "@img/sharp-linux-x64": "0.35.5",
+    "@img/sharp-linuxmusl-x64": "0.35.5",
+    "@next/swc-linux-x64-gnu": "16.4.0",
+    "@next/swc-linux-x64-musl": "16.4.0",
+    "@tailwindcss/oxide-linux-x64-gnu": "4.3.3",
+    "@tailwindcss/oxide-linux-x64-musl": "4.3.3",
+    "lightningcss-linux-x64-gnu": "1.32.0",
+    "lightningcss-linux-x64-musl": "1.32.0"
+  },
   "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
   "main": "index.js",
   "keywords": [],
