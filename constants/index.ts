@@ -4,7 +4,7 @@ export const profile = {
   tagline:
     "Building intelligent automation, data pipelines, and machine learning solutions.",
   summary:
-    "Enthusiastic and self-motivated graduate at the Sri Lanka Institute of Information Technology (SLIIT), with hands-on experience in Python development, data engineering, intelligent automation, and machine learning. Skilled in developing and automating healthcare data workflows using Python, Selenium, and Snowflake, with a focus on workflow orchestration, data processing, and process optimization. Experienced in building data-driven applications, APIs, data pipelines, and cloud-based solutions using Docker, Kubernetes, PostgreSQL, MongoDB, Flask, FastAPI, and Streamlit.",
+    "Software Engineering and Data Science professional with 1.5+ years of hands-on industry experience in Python development, data engineering, AI/ML, healthcare automation, and data-driven applications. Experienced in developing and automating data workflows using Python, Selenium, SQL, Snowflake, and REST APIs, with additional experience in FastAPI, Flask, Docker, Kubernetes, and cloud technologies. Strong background in machine learning, NLP, data pipelines, ETL, database technologies, and AI application development, with proven experience contributing to software and data engineering projects in collaborative environments.",
   email: "sanduninavodya01@gmail.com",
   phone: "+94 71 9369 898",
   location: "No. 105/B, Hospital Road, Ambalantota, Sri Lanka",
@@ -58,8 +58,8 @@ export const education = [
   {
     school: "Sri Lanka Institute of Information Technology (SLIIT)",
     degree: "BSc (Hons) in IT Specializing in Data Science",
-    period: "Oct 2022 – Present",
-    detail: "Malabe · WGPA 3.54 / 4.0",
+    period: "Oct 2022 – 2026",
+    detail: "Second Class Upper Division · WGPA 3.54 / 4.0",
     logo: "/logos/sliit.png",
     website: "https://www.sliit.lk/",
   },
@@ -211,10 +211,12 @@ export const projects = [
 export const publications = [
   {
     title:
-      "A Multi-modal AI System for Epilepsy Diagnosis and Treatment Response",
-    authors: "S. Gunathilaka, D. Ranaweera, S. Navodya, and D. Himsara",
+      "A Multi-Modal AI System for Epilepsy Diagnosis and Treatment Response",
+    authors:
+      "S. Gunathilaka, D. Ranaweera, S. Navodya, D. Himsara, S. Rathnayake, and S. Thelijjagoda",
     venue:
-      "IEEE International Conference on Electro/Information Technology (EIT), La Crosse, WI, USA, 2026 (in press)",
+      "2026 IEEE International Conference on Electro Information Technology (eIT), 2026, pp. 356–361",
+    doi: "10.1109/eIT68936.2026.11670359",
   },
 ];
 

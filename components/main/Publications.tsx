@@ -34,7 +34,7 @@ const Publications = () => {
               className="rounded-2xl border border-ink/10 bg-gradient-to-br from-accent/5 to-surface/60 p-6 sm:p-8"
             >
               <div className="mb-4 inline-flex rounded-full bg-accent-faint px-3 py-1 text-xs font-medium text-accent">
-                IEEE EIT 2026 · In press
+                IEEE eIT 2026
               </div>
               <h3 className="font-display text-xl font-medium leading-snug text-ink sm:text-2xl">
                 {pub.title}
@@ -42,6 +42,17 @@ const Publications = () => {
               <p className="mt-4 text-sm text-ink-soft">{pub.authors}</p>
               <p className="mt-2 text-sm italic leading-relaxed text-ink-muted">
                 {pub.venue}
+              </p>
+              <p className="mt-3 text-sm text-ink-muted">
+                DOI:{" "}
+                <a
+                  href={`https://doi.org/${pub.doi}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-accent underline-offset-2 hover:underline"
+                >
+                  {pub.doi}
+                </a>
               </p>
             </motion.article>
           ))}

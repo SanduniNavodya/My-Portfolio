@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 :root {
   --ink: 26 35 50;
@@ -68,6 +67,13 @@ h4,
   color: rgb(var(--ink));
 }
 
+@layer base {
+  p {
+    text-align: justify;
+    hyphens: auto;
+  }
+}
+
 @layer components {
   .section-pad {
     @apply px-4 sm:px-6 lg:px-10 xl:px-12;
@@ -82,7 +88,7 @@ h4,
   }
 
   .section-shell {
-    @apply mx-auto w-full max-w-7xl section-pad;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 xl:px-12;
   }
 
   .section-title {
