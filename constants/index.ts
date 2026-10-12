@@ -18,7 +18,7 @@ export const profile = {
 
 export const experiences = [
   {
-    role: "Associate Python Developer",
+    role: "Associate Software Engineer",
     company: "Innobot Health",
     period: "Nov 2025 – Present",
     location: "Ethul Kotte, Colombo, Sri Lanka",
